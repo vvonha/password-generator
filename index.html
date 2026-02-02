@@ -1,242 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Generator - Generate Strong Secure Passwords</title>
-  <meta name="description" content="Free secure password generator. Create strong random passwords with custom length, uppercase, lowercase, numbers, and symbols.">
-  <meta name="keywords" content="password generator, random password, secure password, strong password, free generator">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8581458440606037" crossorigin="anonymous"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%); color: #fff; min-height: 100vh; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    h1 { text-align: center; margin: 30px 0; font-size: 2.5rem; }
-    .subtitle { text-align: center; color: #888; margin-bottom: 30px; }
-    .generator { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; }
-    .password-display {
-      background: #000;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .password-text {
-      flex: 1;
-      font-family: 'SF Mono', Consolas, monospace;
-      font-size: 1.4rem;
-      word-break: break-all;
-      color: #4ade80;
-    }
-    .copy-btn {
-      padding: 12px 20px;
-      background: #4ade80;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .copy-btn:hover { background: #22c55e; }
-    .generate-btn {
-      width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, #e94560, #ff6b6b);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-bottom: 25px;
-      font-weight: bold;
-    }
-    .generate-btn:hover { transform: scale(1.02); }
-    .options { margin-top: 20px; }
-    .option-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .option-label { font-size: 1rem; }
-    .slider-container { display: flex; align-items: center; gap: 15px; }
-    input[type="range"] { width: 150px; }
-    .length-value {
-      background: rgba(255,255,255,0.1);
-      padding: 5px 12px;
-      border-radius: 6px;
-      min-width: 45px;
-      text-align: center;
-    }
-    .toggle {
-      width: 50px;
-      height: 26px;
-      background: #333;
-      border-radius: 13px;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .toggle.active { background: #4ade80; }
-    .toggle::after {
-      content: '';
-      width: 22px;
-      height: 22px;
-      background: #fff;
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      transition: left 0.3s;
-    }
-    .toggle.active::after { left: 26px; }
-    .strength-bar { height: 6px; border-radius: 3px; margin-top: 15px; background: #333; overflow: hidden; }
-    .strength-fill { height: 100%; transition: all 0.3s; }
-    .strength-text { text-align: center; margin-top: 8px; font-size: 0.9rem; }
-    .ad-space { background: rgba(255,255,255,0.05); padding: 20px; text-align: center; margin: 20px 0; border-radius: 12px; }
-    footer { text-align: center; padding: 30px; color: #666; }
-    a { color: #4ade80; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator - Create Strong Secure Passwords</title>
+    <meta name="description" content="Generate strong, secure passwords instantly. Customize length and character types. Free online password generator.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#8b5cf6;--primary-dark:#7c3aed;--bg:#0a0a0f;--card:#111118;--text:#fff;--text-muted:#71717a;--border:rgba(255,255,255,0.06);--gradient:linear-gradient(135deg,#8b5cf6 0%,#a855f7 100%)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+        .container{max-width:560px;margin:0 auto;padding:24px}
+        
+        header{text-align:center;padding:60px 0 40px}
+        .logo{font-size:3rem;margin-bottom:16px}
+        h1{font-size:2.5rem;font-weight:800;margin-bottom:12px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .subtitle{color:var(--text-muted);font-size:1.1rem}
+        
+        .card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:32px;margin-bottom:20px}
+        
+        .password-display{position:relative;margin-bottom:24px}
+        .password-box{font-family:'JetBrains Mono',monospace;font-size:1.4rem;padding:24px;background:rgba(139,92,246,0.1);border:2px solid var(--primary);border-radius:16px;word-break:break-all;min-height:80px;display:flex;align-items:center;justify-content:center;text-align:center}
+        .copy-btn{position:absolute;top:12px;right:12px;padding:10px 16px;background:var(--gradient);border:none;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;transition:all 0.3s}
+        .copy-btn:hover{transform:scale(1.05)}
+        .copy-btn.copied{background:#22c55e}
+        
+        .strength-bar{margin-bottom:24px}
+        .strength-label{display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.9rem}
+        .strength-label span:last-child{font-weight:600}
+        .bar-track{height:8px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden}
+        .bar-fill{height:100%;border-radius:4px;transition:all 0.3s}
+        .strength-weak .bar-fill{width:25%;background:#ef4444}
+        .strength-fair .bar-fill{width:50%;background:#f97316}
+        .strength-good .bar-fill{width:75%;background:#eab308}
+        .strength-strong .bar-fill{width:100%;background:#22c55e}
+        
+        .option-group{margin-bottom:20px}
+        .option-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+        .option-header label{color:var(--text-muted);font-weight:500}
+        .option-header span{font-size:1.2rem;font-weight:700;color:var(--primary)}
+        
+        input[type="range"]{width:100%;height:8px;border-radius:4px;background:rgba(255,255,255,0.1);appearance:none;cursor:pointer}
+        input[type="range"]::-webkit-slider-thumb{appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gradient);cursor:pointer;box-shadow:0 2px 10px rgba(139,92,246,0.4)}
+        
+        .checkboxes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .checkbox-item{display:flex;align-items:center;gap:12px;padding:16px;background:rgba(255,255,255,0.02);border-radius:12px;cursor:pointer;transition:all 0.3s}
+        .checkbox-item:hover{background:rgba(255,255,255,0.04)}
+        .checkbox-item input{display:none}
+        .checkmark{width:24px;height:24px;border:2px solid var(--text-muted);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+        .checkbox-item input:checked + .checkmark{background:var(--gradient);border-color:var(--primary)}
+        .checkmark svg{opacity:0;transition:all 0.2s}
+        .checkbox-item input:checked + .checkmark svg{opacity:1}
+        .checkbox-label{font-weight:500}
+        .checkbox-example{color:var(--text-muted);font-size:0.85rem;font-family:'JetBrains Mono',monospace}
+        
+        .generate-btn{width:100%;padding:20px;background:var(--gradient);border:none;border-radius:14px;font-size:1.2rem;font-weight:700;color:#fff;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(139,92,246,0.3)}
+        .generate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,0.4)}
+        
+        .tips{margin-top:24px}
+        .tips h3{margin-bottom:16px;font-size:1rem;color:var(--text-muted)}
+        .tip-list{display:grid;gap:8px}
+        .tip-item{display:flex;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.02);border-radius:10px;font-size:0.95rem}
+        .tip-item span:first-child{color:var(--primary)}
+        
+        footer{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:0.9rem}
+        footer a{color:var(--primary);text-decoration:none}
+        
+        @media(max-width:480px){
+            h1{font-size:2rem}
+            .password-box{font-size:1.1rem;padding:20px}
+            .checkboxes{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔐 Password Generator</h1>
-    <p class="subtitle">Generate strong, secure passwords instantly</p>
-    
-    <div class="ad-space">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-    
-    <div class="generator">
-      <div class="password-display">
-        <div class="password-text" id="password">Click Generate!</div>
-        <button class="copy-btn" onclick="copyPassword()">Copy</button>
-      </div>
-      
-      <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
-      <div class="strength-text" id="strengthText">Password Strength</div>
-      
-      <button class="generate-btn" onclick="generatePassword()">🎲 Generate Password</button>
-      
-      <div class="options">
-        <div class="option-row">
-          <span class="option-label">Password Length</span>
-          <div class="slider-container">
-            <input type="range" id="length" min="8" max="64" value="16" oninput="updateLength()">
-            <span class="length-value" id="lengthValue">16</span>
-          </div>
+    <div class="container">
+        <header>
+            <div class="logo">🔐</div>
+            <h1>Password Generator</h1>
+            <p class="subtitle">Create strong, secure passwords instantly</p>
+        </header>
+        
+        <div class="card">
+            <div class="password-display">
+                <div class="password-box" id="password">Click Generate</div>
+                <button class="copy-btn" onclick="copyPassword()">Copy</button>
+            </div>
+            
+            <div class="strength-bar" id="strength-container">
+                <div class="strength-label">
+                    <span>Strength</span>
+                    <span id="strength-text">--</span>
+                </div>
+                <div class="bar-track">
+                    <div class="bar-fill"></div>
+                </div>
+            </div>
+            
+            <div class="option-group">
+                <div class="option-header">
+                    <label>Password Length</label>
+                    <span id="length-value">16</span>
+                </div>
+                <input type="range" id="length" min="8" max="64" value="16" oninput="updateLength()">
+            </div>
+            
+            <div class="option-group">
+                <label style="display:block;margin-bottom:12px;color:var(--text-muted);font-weight:500">Include Characters</label>
+                <div class="checkboxes">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span class="checkmark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <div>
+                            <div class="checkbox-label">Uppercase</div>
+                            <div class="checkbox-example">ABC</div>
+                        </div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span class="checkmark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <div>
+                            <div class="checkbox-label">Lowercase</div>
+                            <div class="checkbox-example">abc</div>
+                        </div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="numbers" checked>
+                        <span class="checkmark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <div>
+                            <div class="checkbox-label">Numbers</div>
+                            <div class="checkbox-example">123</div>
+                        </div>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="symbols" checked>
+                        <span class="checkmark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                        <div>
+                            <div class="checkbox-label">Symbols</div>
+                            <div class="checkbox-example">!@#</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generate()">🎲 Generate Password</button>
         </div>
-        <div class="option-row">
-          <span class="option-label">Uppercase (A-Z)</span>
-          <div class="toggle active" id="uppercase" onclick="toggleOption(this)"></div>
+        
+        <div class="card tips">
+            <h3>Password Tips</h3>
+            <div class="tip-list">
+                <div class="tip-item"><span>✓</span>Use at least 16 characters</div>
+                <div class="tip-item"><span>✓</span>Mix uppercase, lowercase, numbers & symbols</div>
+                <div class="tip-item"><span>✓</span>Never reuse passwords across sites</div>
+                <div class="tip-item"><span>✓</span>Use a password manager</div>
+            </div>
         </div>
-        <div class="option-row">
-          <span class="option-label">Lowercase (a-z)</span>
-          <div class="toggle active" id="lowercase" onclick="toggleOption(this)"></div>
-        </div>
-        <div class="option-row">
-          <span class="option-label">Numbers (0-9)</span>
-          <div class="toggle active" id="numbers" onclick="toggleOption(this)"></div>
-        </div>
-        <div class="option-row">
-          <span class="option-label">Symbols (!@#$%)</span>
-          <div class="toggle active" id="symbols" onclick="toggleOption(this)"></div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="ad-space">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
     
     <footer>
-      <p>Made with ❤️ | <a href="https://vvonha.github.io/crypto-funding-scanner/">More Free Tools</a></p>
+        <p>© 2026 <a href="https://t.me/vvonha">@vvonha</a> · More tools at vvonha.github.io</p>
     </footer>
-  </div>
-  
-  <script>
-    const chars = {
-      uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      lowercase: 'abcdefghijklmnopqrstuvwxyz',
-      numbers: '0123456789',
-      symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
-    };
     
-    function toggleOption(el) {
-      el.classList.toggle('active');
-      generatePassword();
-    }
-    
-    function updateLength() {
-      document.getElementById('lengthValue').textContent = document.getElementById('length').value;
-      generatePassword();
-    }
-    
-    function generatePassword() {
-      const length = parseInt(document.getElementById('length').value);
-      let charset = '';
-      
-      if (document.getElementById('uppercase').classList.contains('active')) charset += chars.uppercase;
-      if (document.getElementById('lowercase').classList.contains('active')) charset += chars.lowercase;
-      if (document.getElementById('numbers').classList.contains('active')) charset += chars.numbers;
-      if (document.getElementById('symbols').classList.contains('active')) charset += chars.symbols;
-      
-      if (!charset) {
-        document.getElementById('password').textContent = 'Select at least one option';
-        return;
-      }
-      
-      let password = '';
-      const array = new Uint32Array(length);
-      crypto.getRandomValues(array);
-      
-      for (let i = 0; i < length; i++) {
-        password += charset[array[i] % charset.length];
-      }
-      
-      document.getElementById('password').textContent = password;
-      updateStrength(password);
-    }
-    
-    function updateStrength(password) {
-      let score = 0;
-      if (password.length >= 12) score++;
-      if (password.length >= 16) score++;
-      if (/[A-Z]/.test(password)) score++;
-      if (/[a-z]/.test(password)) score++;
-      if (/[0-9]/.test(password)) score++;
-      if (/[^A-Za-z0-9]/.test(password)) score++;
-      
-      const fill = document.getElementById('strengthFill');
-      const text = document.getElementById('strengthText');
-      
-      const levels = [
-        { width: '20%', color: '#ef4444', text: 'Very Weak' },
-        { width: '40%', color: '#f97316', text: 'Weak' },
-        { width: '60%', color: '#eab308', text: 'Medium' },
-        { width: '80%', color: '#22c55e', text: 'Strong' },
-        { width: '100%', color: '#4ade80', text: 'Very Strong' }
-      ];
-      
-      const level = Math.min(Math.floor(score / 1.5), 4);
-      fill.style.width = levels[level].width;
-      fill.style.background = levels[level].color;
-      text.textContent = levels[level].text;
-      text.style.color = levels[level].color;
-    }
-    
-    function copyPassword() {
-      const password = document.getElementById('password').textContent;
-      navigator.clipboard.writeText(password);
-      alert('Password copied!');
-    }
-    
-    generatePassword();
-  </script>
+    <script>
+        const chars = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+        };
+        
+        function updateLength() {
+            document.getElementById('length-value').textContent = document.getElementById('length').value;
+        }
+        
+        function generate() {
+            const length = parseInt(document.getElementById('length').value);
+            let charset = '';
+            
+            if (document.getElementById('uppercase').checked) charset += chars.uppercase;
+            if (document.getElementById('lowercase').checked) charset += chars.lowercase;
+            if (document.getElementById('numbers').checked) charset += chars.numbers;
+            if (document.getElementById('symbols').checked) charset += chars.symbols;
+            
+            if (!charset) {
+                alert('Please select at least one character type');
+                return;
+            }
+            
+            let password = '';
+            const array = new Uint32Array(length);
+            crypto.getRandomValues(array);
+            for (let i = 0; i < length; i++) {
+                password += charset[array[i] % charset.length];
+            }
+            
+            document.getElementById('password').textContent = password;
+            updateStrength(password);
+        }
+        
+        function updateStrength(password) {
+            const container = document.getElementById('strength-container');
+            const text = document.getElementById('strength-text');
+            container.className = 'strength-bar';
+            
+            let score = 0;
+            if (password.length >= 12) score++;
+            if (password.length >= 16) score++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score++;
+            if (/\d/.test(password)) score++;
+            if (/[^a-zA-Z0-9]/.test(password)) score++;
+            
+            if (score <= 2) { container.classList.add('strength-weak'); text.textContent = 'Weak'; }
+            else if (score === 3) { container.classList.add('strength-fair'); text.textContent = 'Fair'; }
+            else if (score === 4) { container.classList.add('strength-good'); text.textContent = 'Good'; }
+            else { container.classList.add('strength-strong'); text.textContent = 'Strong'; }
+        }
+        
+        function copyPassword() {
+            const password = document.getElementById('password').textContent;
+            if (password === 'Click Generate') return;
+            
+            navigator.clipboard.writeText(password);
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+        
+        // Generate on load
+        generate();
+    </script>
 </body>
 </html>
